@@ -1,5 +1,3 @@
-# mentorship
-
 ## Getting Started
 
 ### Prerequisites
