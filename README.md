@@ -1,19 +1,19 @@
-## Getting Started
+# Getting Started
 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Programmers-Only-Group_mentorship&metric=alert_status)](https://sonarcloud.io/dashboard?id=Programmers-Only-Group_mentorship)
 
-### Prerequisites
+## :pushpin: Prerequisites
 * java 11+
 * git
 * maven 3.1+ (optional)
 
-### Installation
+## :hammer: Installation
 ```bash
 git clone https://github.com/Programmers-Only-Group/mentorship
 cd mentorship
 ```
 
-## Running locally
+## :fire: Running locally
 You can run application from Maven directly using Spring Boot Maven plugin. If you do this it will pick up changes that you make in the project immediately (changes to Java source files require a compile as well - most people use an IDE for this):
 
 ```./mvnw spring-boot:run```
@@ -27,7 +27,7 @@ java -jar target/*.jar
 
 You can then access application here: http://localhost:8080/
 
-# Package structure
+## :memo: Package structure
 
 ```bash
 ├── pom.xml
@@ -60,7 +60,7 @@ You can then access application here: http://localhost:8080/
 └── mvnw.cmd
 ```
 
-## Api Layer (Api)
+### Api Layer (Api)
  This layer is responsible for handling incoming requests from frontend application or another internal services.
  
  - **root** - root api package should contain all available controller (eg.``MentorshipController.java``, ``SkillController.java``)
@@ -70,7 +70,7 @@ You can then access application here: http://localhost:8080/
  
  **Bear in mind**: api layer isn't correct place for business logic, it should only handle incoming request and delegate to proper service.
  
- ## Business Layer (Service)
+ ### Business Layer (Service)
  One of the most important place in application. Contain all complicated logic involved with business process.
  
  - **root** - root service package should contain all services responsible for implement business logic (eg.``MentorshipService.java``, ``ReservationService.java``)
@@ -79,7 +79,7 @@ You can then access application here: http://localhost:8080/
  
  **Bear in mind**: keep business layer as secure as possible, so please write tests! It's only layer which certainly requires it!
  
- ## Client / Database Layer (client, repository)  
+ ### Client / Database Layer (client, repository)  
  This layer is responsible for using external tools like database or  services (like Google Calendar API).
  
  - **root** (repository) - root repository package should contain main repositories (eg.``MentorshipRepository.java``)
@@ -87,3 +87,9 @@ You can then access application here: http://localhost:8080/
  - **root** (client) - root client package should contain external services(eg.``GoogleAPI.java``)
  - **config** (client) - package which loads and prepare all necessary configuration to use external clients (like. keeping secrets, set connection pool, connection timeout etc)
   - **data** (client)  - should contain Data Transfer Objects between service layer <--> client layer (DTO's)
+  
+## :pencil2: Contribute guide
+1. Clone project
+2. Create your feature branch with prefix and task number (eg. `MEHN-1` where `MEHN` define prefix for mentorship and `1` is a task number)
+3. Commit and push your changes to feature branch. Make sure your branch is up to date with master branch.
+4. Create pull request to master branch
