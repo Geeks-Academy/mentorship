@@ -1,5 +1,8 @@
 ## Getting Started
 
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Programmers-Only-Group_mentorship&metric=alert_status)](https://sonarcloud.io/dashboard?id=Programmers-Only-Group_mentorship)
+
+
 ### Prerequisites
 * java 11+
 * git
