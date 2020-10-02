@@ -1,19 +1,19 @@
-## Getting Started
+# Getting Started
 
 [![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Programmers-Only-Group_mentorship&metric=alert_status)](https://sonarcloud.io/dashboard?id=Programmers-Only-Group_mentorship)
 
-### Prerequisites
+## :pushpin: Prerequisites
 * java 11+
 * git
 * maven 3.1+ (optional)
 
-### :hammer: Installation
+## :hammer: Installation
 ```bash
 git clone https://github.com/Programmers-Only-Group/mentorship
 cd mentorship
 ```
 
-### :fire: Running locally
+## :fire: Running locally
 You can run application from Maven directly using Spring Boot Maven plugin. If you do this it will pick up changes that you make in the project immediately (changes to Java source files require a compile as well - most people use an IDE for this):
 
 ```./mvnw spring-boot:run```
@@ -27,7 +27,7 @@ java -jar target/*.jar
 
 You can then access application here: http://localhost:8080/
 
-## Package structure
+## :memo: Package structure
 
 ```bash
 ├── pom.xml
