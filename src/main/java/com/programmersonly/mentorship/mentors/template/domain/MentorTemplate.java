@@ -1,9 +1,9 @@
-package com.programmersonly.mentorship.mentors.mentorsTemplate.domain;
+package com.programmersonly.mentorship.mentors.template.domain;
 
 import com.programmersonly.mentorship.commons.shared.UserId;
-import com.programmersonly.mentorship.mentors.mentorsTemplate.domain.MentorTemplateEvent.MentorTemplateConfirmationFailed;
-import com.programmersonly.mentorship.mentors.mentorsTemplate.domain.MentorTemplateEvent.MentorTemplateConfirmed;
-import com.programmersonly.mentorship.mentors.mentorsTemplate.domain.MentorTemplateEvent.MentorTemplateCreated;
+import com.programmersonly.mentorship.mentors.template.domain.MentorTemplateEvent.MentorTemplateConfirmationFailed;
+import com.programmersonly.mentorship.mentors.template.domain.MentorTemplateEvent.MentorTemplateConfirmed;
+import com.programmersonly.mentorship.mentors.template.domain.MentorTemplateEvent.MentorTemplateCreated;
 import io.vavr.control.Either;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

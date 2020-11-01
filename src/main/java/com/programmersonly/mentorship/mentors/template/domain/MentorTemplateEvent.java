@@ -1,4 +1,4 @@
-package com.programmersonly.mentorship.mentors.mentorsTemplate.domain;
+package com.programmersonly.mentorship.mentors.template.domain;
 
 import com.programmersonly.mentorship.commons.shared.UserId;
 import com.programmersonly.mentorship.commons.events.DomainEvent;
@@ -46,35 +46,13 @@ public interface MentorTemplateEvent extends DomainEvent {
     }
 
     @Value
-    class MentorTemplateCreateFailed implements MentorTemplateEvent {
-        @NonNull UUID eventId = UUID.randomUUID();
-        @NonNull Instant when;
-
-        @NonNull String reason;
-
-        public static MentorTemplateCreateFailed now(String reason) {
-            return new MentorTemplateCreateFailed(Instant.now(), reason);
-        }
-
-        @Override
-        public UUID getMentorTemplateId() {
-            throw new IllegalArgumentException("Mentor creating...");
-
-        }
-
-        @Override
-        public UUID getAggregateId() {
-            throw new IllegalArgumentException("Mentor creating...");
-        }
-    }
-
-    @Value
     class MentorTemplateConfirmed {
         @NonNull UUID eventId = UUID.randomUUID();
         @NonNull Instant when;
 
         @NonNull MentorTemplateId mentorTemplateId;
         @NonNull MentorTemplateStatus status;
+
         public static MentorTemplateConfirmed now(MentorTemplateId mentorTemplateId) {
             return new MentorTemplateConfirmed(Instant.now(), mentorTemplateId, MentorTemplateStatus.CONFIRMED);
         }

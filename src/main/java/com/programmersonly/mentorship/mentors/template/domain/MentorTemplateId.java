@@ -1,4 +1,4 @@
-package com.programmersonly.mentorship.mentors.mentorsTemplate.domain;
+package com.programmersonly.mentorship.mentors.template.domain;
 
 import lombok.NonNull;
 import lombok.Value;

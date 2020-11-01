@@ -1,7 +1,7 @@
-package com.programmersonly.mentorship.mentors.mentorsTemplate.infrastructure;
+package com.programmersonly.mentorship.mentors.template.infrastructure;
 
 import com.programmersonly.mentorship.commons.shared.UserId;
-import com.programmersonly.mentorship.mentors.mentorsTemplate.domain.*;
+import com.programmersonly.mentorship.mentors.template.domain.*;
 import io.vavr.control.Option;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -10,7 +10,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 import java.util.UUID;
 
-import static com.programmersonly.mentorship.mentors.mentorsTemplate.domain.MentorTemplateEvent.*;
+import static com.programmersonly.mentorship.mentors.template.domain.MentorTemplateEvent.*;
 import static io.vavr.API.*;
 import static io.vavr.Predicates.instanceOf;
 

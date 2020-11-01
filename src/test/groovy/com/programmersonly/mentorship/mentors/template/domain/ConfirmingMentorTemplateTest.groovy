@@ -1,12 +1,12 @@
-package com.programmersonly.mentorship.mentors.mentorsTemplate.domain
+package com.programmersonly.mentorship.mentors.template.domain
 
 import io.vavr.control.Either
 import spock.lang.Specification
 
-import static com.programmersonly.mentorship.mentors.mentorsTemplate.domain.MentorTemplateFixture.confirmedMentorTemplate
-import static com.programmersonly.mentorship.mentors.mentorsTemplate.domain.MentorTemplateFixture.createdMentorTemplate
-import static com.programmersonly.mentorship.mentors.mentorsTemplate.domain.MentorTemplateEvent.MentorTemplateConfirmed
-import static com.programmersonly.mentorship.mentors.mentorsTemplate.domain.MentorTemplateEvent.MentorTemplateConfirmationFailed
+import static com.programmersonly.mentorship.mentors.template.domain.MentorTemplateFixture.confirmedMentorTemplate
+import static com.programmersonly.mentorship.mentors.template.domain.MentorTemplateFixture.createdMentorTemplate
+import static com.programmersonly.mentorship.mentors.template.domain.MentorTemplateEvent.MentorTemplateConfirmed
+import static com.programmersonly.mentorship.mentors.template.domain.MentorTemplateEvent.MentorTemplateConfirmationFailed
 
 class ConfirmingMentorTemplateTest extends Specification {
 
