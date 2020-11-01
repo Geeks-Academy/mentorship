@@ -1,4 +1,4 @@
-package com.programmersonly.mentorship.reservations.mentorsTemplate.infrastructure;
+package com.programmersonly.mentorship.mentors.mentorsTemplate.infrastructure;
 
 import lombok.AccessLevel;
 import lombok.Getter;

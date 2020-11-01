@@ -1,9 +1,9 @@
-package com.programmersonly.mentorship.reservations.mentorsTemplate.application;
+package com.programmersonly.mentorship.mentors.mentorsTemplate.application;
 
 import com.programmersonly.mentorship.commons.commands.Result;
-import com.programmersonly.mentorship.reservations.mentorsTemplate.domain.MentorTemplate;
-import com.programmersonly.mentorship.reservations.mentorsTemplate.domain.MentorTemplateEvent.MentorTemplateCreateFailed;
-import com.programmersonly.mentorship.reservations.mentorsTemplate.domain.MentorTemplates;
+import com.programmersonly.mentorship.mentors.mentorsTemplate.domain.MentorTemplate;
+import com.programmersonly.mentorship.mentors.mentorsTemplate.domain.MentorTemplateEvent.MentorTemplateCreateFailed;
+import com.programmersonly.mentorship.mentors.mentorsTemplate.domain.MentorTemplates;
 import com.programmersonly.mentorship.commons.shared.UserId;
 import io.vavr.control.Try;
 import lombok.AllArgsConstructor;
@@ -12,7 +12,7 @@ import lombok.extern.slf4j.Slf4j;
 
 import static com.programmersonly.mentorship.commons.commands.Result.Rejection;
 import static com.programmersonly.mentorship.commons.commands.Result.Success;
-import static com.programmersonly.mentorship.reservations.mentorsTemplate.domain.MentorTemplateEvent.MentorTemplateCreated;
+import static com.programmersonly.mentorship.mentors.mentorsTemplate.domain.MentorTemplateEvent.MentorTemplateCreated;
 
 @AllArgsConstructor
 @Slf4j

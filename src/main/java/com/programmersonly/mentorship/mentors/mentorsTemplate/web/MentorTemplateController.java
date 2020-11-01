@@ -1,8 +1,8 @@
-package com.programmersonly.mentorship.reservations.mentorsTemplate.web;
+package com.programmersonly.mentorship.mentors.mentorsTemplate.web;
 
 import com.programmersonly.mentorship.commons.commands.Result;
-import com.programmersonly.mentorship.reservations.mentorsTemplate.application.CreateMentorCommand;
-import com.programmersonly.mentorship.reservations.mentorsTemplate.application.CreatingMentorTemplate;
+import com.programmersonly.mentorship.mentors.mentorsTemplate.application.CreateMentorCommand;
+import com.programmersonly.mentorship.mentors.mentorsTemplate.application.CreatingMentorTemplate;
 import io.vavr.control.Try;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

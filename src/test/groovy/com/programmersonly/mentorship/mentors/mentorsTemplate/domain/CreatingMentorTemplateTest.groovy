@@ -1,8 +1,8 @@
-package com.programmersonly.mentorship.reservations.mentorsTemplate.domain
+package com.programmersonly.mentorship.mentors.mentorsTemplate.domain
 
 import spock.lang.Specification
 
-import static com.programmersonly.mentorship.reservations.mentorsTemplate.domain.MentorTemplateFixture.notExistingTemplate
+import static com.programmersonly.mentorship.mentors.mentorsTemplate.domain.MentorTemplateFixture.notExistingTemplate
 
 class CreatingMentorTemplateTest extends Specification {
 

@@ -1,7 +1,7 @@
-package com.programmersonly.mentorship.reservations.mentorsTemplate.infrastructure;
+package com.programmersonly.mentorship.mentors.mentorsTemplate.infrastructure;
 
-import com.programmersonly.mentorship.reservations.mentorsTemplate.application.CreatingMentorTemplate;
-import com.programmersonly.mentorship.reservations.mentorsTemplate.domain.MentorTemplates;
+import com.programmersonly.mentorship.mentors.mentorsTemplate.application.CreatingMentorTemplate;
+import com.programmersonly.mentorship.mentors.mentorsTemplate.domain.MentorTemplates;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

@@ -1,4 +1,4 @@
-package com.programmersonly.mentorship.reservations.mentorsTemplate.application;
+package com.programmersonly.mentorship.mentors.mentorsTemplate.application;
 
 import lombok.NonNull;
 import lombok.Value;

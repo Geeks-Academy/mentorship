@@ -1,4 +1,4 @@
-package com.programmersonly.mentorship.reservations.mentorsTemplate.domain;
+package com.programmersonly.mentorship.mentors.mentorsTemplate.domain;
 
 import com.programmersonly.mentorship.commons.shared.UserId;
 import com.programmersonly.mentorship.commons.events.DomainEvent;
