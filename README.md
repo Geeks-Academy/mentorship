@@ -29,6 +29,6 @@ You can then access application here: http://localhost:8080/
 
 ## :pencil2: Contribute guide
 1. Clone project
-2. Create your feature branch with prefix and task number (eg. `MEHN-1` where `MEHN` define prefix for mentorship and `1` is a task number)
-3. Commit and push your changes to feature branch. Make sure your branch is up to date with master branch.
-4. Create pull request to master branch
+2. Create your feature branch from `develop` with prefix and task number (eg. `MEHN-1` where `MEHN` define prefix for mentorship and `1` is a task number)
+3. Commit and push your changes to feature branch. Make sure your branch is up to date with `develop` branch.
+4. Create pull request to `develop` branch
