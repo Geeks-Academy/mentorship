@@ -1,4 +1,4 @@
-package com.programmersonly.mentorship.mentors.domain;
+package com.programmersonly.mentorship.mentors.template;
 
 import java.util.UUID;
 import lombok.Data;
