@@ -1,5 +1,6 @@
 package com.programmersonly.mentorship.mentors.template;
 
+import com.programmersonly.mentorship.commons.exception.NotFoundException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -15,7 +16,7 @@ public class TemplateService {
 
   public void confirm(ConfirmTemplateRequest request) {
     TemplateEntity template = repository.findById(request.getTemplateId())
-        .orElseThrow(() -> new IllegalArgumentException(""));
+        .orElseThrow(NotFoundException::new);
 
     template.confirm();
   }
@@ -23,7 +24,7 @@ public class TemplateService {
   public void remove(RemoveTemplateRequest request) {
     repository.findById(request.getTemplateId())
             .filter(templateEntity -> templateEntity.getStatus().equals(TemplateStatus.CREATED))
-            .orElseThrow(() -> new IllegalArgumentException(""));
+            .orElseThrow(NotFoundException::new);
 
     repository.deleteById(request.getTemplateId());
   }
