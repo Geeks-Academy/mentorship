@@ -7,7 +7,7 @@ import java.util.UUID;
 
 @Data
 @Builder
-class TemplateView {
+class TemplateResponse {
     private UUID userId;
     private String fullName;
 }

@@ -1,6 +1,7 @@
 package com.programmersonly.mentorship.mentors.template;
 
-import com.programmersonly.mentorship.commons.exception.NotFoundException;
+import com.programmersonly.mentorship.commons.exception.BasicErrorResponse;
+import com.programmersonly.mentorship.commons.exception.BusinessException;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
@@ -12,10 +13,9 @@ class SpringTemplateService implements TemplateService {
     repository.save(new TemplateEntity(request.getUserId(), request.getFullName(), request.getEmail(), TemplateStatus.CREATED));
   }
 
-  //TODO @Transactional doesn't work by default, why?
   public void confirm(ConfirmTemplateRequest request) {
     TemplateEntity template = repository.findById(request.getTemplateId())
-        .orElseThrow(NotFoundException::new);
+        .orElseThrow(() -> BusinessException.exception404(new BasicErrorResponse("MS-02", "Cannot find template")));
 
     template.confirm();
     repository.save(template);
@@ -24,7 +24,7 @@ class SpringTemplateService implements TemplateService {
   public void remove(RemoveTemplateRequest request) {
     repository.findById(request.getTemplateId())
             .filter(templateEntity -> templateEntity.getStatus().equals(TemplateStatus.CREATED))
-            .orElseThrow(NotFoundException::new);
+            .orElseThrow(() -> BusinessException.exception404(new BasicErrorResponse("MS-02", "Cannot find template")));
 
     repository.deleteById(request.getTemplateId());
   }

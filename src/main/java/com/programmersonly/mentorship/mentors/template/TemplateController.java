@@ -19,19 +19,19 @@ class TemplateController {
 
     @PostMapping("/create")
     public ResponseEntity<Void> createMentorTemplate(@RequestBody CreateTemplateRequest dto){
-        facade.getTemplateService().create(dto);
+        facade.create(dto);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @PutMapping("/confirm")
     public ResponseEntity<Void> confirmMentorTemplate(@RequestBody ConfirmTemplateRequest dto){
-        facade.getTemplateService().confirm(dto);
+        facade.confirm(dto);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
     @DeleteMapping("/delete")
     public ResponseEntity<Void> removeMentorTemplate(@RequestBody RemoveTemplateRequest dto){
-        facade.getTemplateService().remove(dto);
+        facade.remove(dto);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 }
