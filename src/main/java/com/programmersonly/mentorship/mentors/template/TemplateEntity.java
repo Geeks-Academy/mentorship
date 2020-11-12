@@ -20,7 +20,7 @@ import org.springframework.http.HttpStatus;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class TemplateEntity {
+class TemplateEntity {
 
   @Id
   @GeneratedValue(generator = "UUID")

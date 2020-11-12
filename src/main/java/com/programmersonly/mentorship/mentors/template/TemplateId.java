@@ -4,7 +4,7 @@ import java.util.UUID;
 import lombok.Data;
 
 @Data
-public class TemplateId {
+class TemplateId {
   private UUID value;
 
   private TemplateId(UUID value) {

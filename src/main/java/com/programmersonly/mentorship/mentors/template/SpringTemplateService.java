@@ -1,12 +1,17 @@
 package com.programmersonly.mentorship.mentors.template;
 
 import com.programmersonly.mentorship.commons.exception.NotFoundException;
+import com.programmersonly.mentorship.mentors.template.TemplateEntity;
+import com.programmersonly.mentorship.mentors.template.TemplateEntityRepository;
+import com.programmersonly.mentorship.mentors.template.TemplateStatus;
+import com.programmersonly.mentorship.mentors.template.port.primary.TemplateService;
+import com.programmersonly.mentorship.mentors.template.port.shared.ConfirmTemplateRequest;
+import com.programmersonly.mentorship.mentors.template.port.shared.CreateTemplateRequest;
+import com.programmersonly.mentorship.mentors.template.port.shared.RemoveTemplateRequest;
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 
-@Service
 @RequiredArgsConstructor
-public class TemplateService {
+class SpringTemplateService implements TemplateService {
 
   private final TemplateEntityRepository repository;
 

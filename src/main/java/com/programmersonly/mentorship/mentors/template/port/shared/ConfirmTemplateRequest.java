@@ -1,4 +1,4 @@
-package com.programmersonly.mentorship.mentors.template;
+package com.programmersonly.mentorship.mentors.template.port.shared;
 
 import lombok.Data;
 
