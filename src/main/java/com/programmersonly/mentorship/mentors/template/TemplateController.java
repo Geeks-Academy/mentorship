@@ -1,10 +1,5 @@
-package com.programmersonly.mentorship.web;
+package com.programmersonly.mentorship.mentors.template;
 
-import com.programmersonly.mentorship.mentors.template.TemplateFacade;
-import com.programmersonly.mentorship.mentors.template.port.primary.TemplateService;
-import com.programmersonly.mentorship.mentors.template.port.shared.ConfirmTemplateRequest;
-import com.programmersonly.mentorship.mentors.template.port.shared.CreateTemplateRequest;
-import com.programmersonly.mentorship.mentors.template.port.shared.RemoveTemplateRequest;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

@@ -1,4 +1,4 @@
-package com.programmersonly.mentorship.mentors.template.port.shared;
+package com.programmersonly.mentorship.mentors.template;
 
 import lombok.Builder;
 import lombok.Data;
@@ -7,7 +7,7 @@ import java.util.UUID;
 
 @Data
 @Builder
-public class TemplateView {
+class TemplateView {
     private UUID userId;
     private String fullName;
 }

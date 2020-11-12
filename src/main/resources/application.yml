@@ -4,3 +4,7 @@ spring:
   h2:
     console:
       enabled: true
+  datasource:
+    password:
+    username: sa
+    url: jdbc:h2:mem:testdb

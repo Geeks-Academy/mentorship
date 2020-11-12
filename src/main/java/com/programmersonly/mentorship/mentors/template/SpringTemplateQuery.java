@@ -1,8 +1,6 @@
 package com.programmersonly.mentorship.mentors.template;
 
 import com.programmersonly.mentorship.commons.exception.NotFoundException;
-import com.programmersonly.mentorship.mentors.template.port.primary.TemplateQuery;
-import com.programmersonly.mentorship.mentors.template.port.shared.TemplateView;
 import lombok.RequiredArgsConstructor;
 
 import java.util.UUID;

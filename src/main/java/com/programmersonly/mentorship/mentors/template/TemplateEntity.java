@@ -13,13 +13,13 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Type;
 import org.springframework.http.HttpStatus;
 
 @Entity(name = "Template")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 class TemplateEntity {
 
   @Id
@@ -28,8 +28,10 @@ class TemplateEntity {
       name = "UUID",
       strategy = "org.hibernate.id.UUIDGenerator"
   )
+  @Type(type = "uuid-char")
   private UUID id;
 
+  @Type(type = "uuid-char")
   private UUID userId;
   private String fullName;
   private String email;
