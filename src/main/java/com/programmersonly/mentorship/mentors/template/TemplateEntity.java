@@ -7,14 +7,11 @@ import javax.persistence.Id;
 
 import com.programmersonly.mentorship.commons.exception.BasicErrorResponse;
 import com.programmersonly.mentorship.commons.exception.BusinessException;
-import com.programmersonly.mentorship.mentors.template.TemplateStatus;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
-import org.springframework.http.HttpStatus;
 
 @Entity(name = "Template")
 @Data
@@ -46,7 +43,7 @@ class TemplateEntity {
 
   public void confirm() {
     if(this.status != TemplateStatus.CREATED) {
-      throw BusinessException.exception409(new BasicErrorResponse("MS-01", "Cannot confirm"));
+      throw BusinessException.ex409(new BasicErrorResponse("MS-01", "Cannot confirm"));
     }
 
     this.status = TemplateStatus.CONFIRMED;

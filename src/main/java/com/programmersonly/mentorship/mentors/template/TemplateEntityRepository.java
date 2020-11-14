@@ -1,8 +1,8 @@
 package com.programmersonly.mentorship.mentors.template;
 
 import java.util.UUID;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
 
-interface TemplateEntityRepository extends JpaRepository<TemplateEntity, UUID> {
+interface TemplateEntityRepository extends CrudRepository<TemplateEntity, UUID> {
 
 }

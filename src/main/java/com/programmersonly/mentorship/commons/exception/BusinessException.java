@@ -15,11 +15,11 @@ public class BusinessException extends RuntimeException {
         this(new ResponseEntity<>(response, status));
     }
 
-    public static BusinessException exception404(ErrorResponse response){
+    public static BusinessException ex404(ErrorResponse response){
         return new BusinessException(HttpStatus.NOT_FOUND, response);
     }
 
-    public static BusinessException exception409(ErrorResponse response){
+    public static BusinessException ex409(ErrorResponse response){
         return new BusinessException(HttpStatus.CONFLICT, response);
     }
 }

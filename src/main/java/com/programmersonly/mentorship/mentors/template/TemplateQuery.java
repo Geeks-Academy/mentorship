@@ -1,7 +1,8 @@
 package com.programmersonly.mentorship.mentors.template;
 
+import java.util.Optional;
 import java.util.UUID;
 
 interface TemplateQuery {
-    TemplateResponse findByTemplateId(UUID templateId);
+    Optional<TemplateEntity> findById(UUID templateId);
 }
