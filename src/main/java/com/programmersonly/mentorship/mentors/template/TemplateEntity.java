@@ -7,16 +7,14 @@ import javax.persistence.Id;
 
 import com.programmersonly.mentorship.commons.exception.BasicErrorResponse;
 import com.programmersonly.mentorship.commons.exception.BusinessException;
-import lombok.AllArgsConstructor;
-import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
 @Entity(name = "Template")
-@Data
 @NoArgsConstructor
-@AllArgsConstructor
+@Getter
 class TemplateEntity {
 
   @Id
