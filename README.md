@@ -1,6 +1,6 @@
 # Getting Started
 
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Programmers-Only-Group_mentorship&metric=alert_status)](https://sonarcloud.io/dashboard?id=Programmers-Only-Group_mentorship)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=Programmers-Only-Group_mentorship&metric=alert_status)](https://sonarcloud.io/dashboard?id=Programmers-Only-Group_mentorship) [![Bugs](https://sonarcloud.io/api/project_badges/measure?project=Programmers-Only-Group_mentorship&metric=bugs)](https://sonarcloud.io/dashboard?id=Programmers-Only-Group_mentorship) [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=Programmers-Only-Group_mentorship&metric=coverage)](https://sonarcloud.io/dashboard?id=Programmers-Only-Group_mentorship)
 
 ## :pushpin: Prerequisites
 * java 11+
