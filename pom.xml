@@ -110,6 +110,14 @@
                 <groupId>org.jacoco</groupId>
                 <artifactId>jacoco-maven-plugin</artifactId>
                 <version>0.8.5</version>
+                <configuration>
+                    <excludes>
+                        <exclude>src/main/java/com/programmersonly/mentorship/web/GlobalExceptionHandler.java</exclude>
+                        <exclude>src/main/java/com/programmersonly/mentorship/commons/exception/**/*</exclude>
+                        <exclude>**/*Request.*</exclude>
+                        <exclude>**/*Configuration.*</exclude>
+                    </excludes>
+                </configuration>
                 <executions>
                     <execution>
                         <id>prepare-agent</id>
