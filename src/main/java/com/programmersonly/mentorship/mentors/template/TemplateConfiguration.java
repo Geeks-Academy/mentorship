@@ -6,6 +6,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 class TemplateConfiguration {
 
+    
     @Bean
     TemplateRepository repository(TemplateEntityRepository repository){
         return new TemplateRepository(repository);
