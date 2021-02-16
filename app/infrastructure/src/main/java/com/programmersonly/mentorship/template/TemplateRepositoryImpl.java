@@ -38,7 +38,7 @@ public class TemplateRepositoryImpl implements TemplateRepository {
 
     @Override
     public void deleteById(UUID templateId) {
-
+        templateDao.deleteById(templateId);
     }
 
     private Template map(TemplateEntity templateEntity){
