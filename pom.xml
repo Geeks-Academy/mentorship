@@ -19,6 +19,7 @@
     <properties>
         <sonar.projectKey>Programmers-Only-Group_mentorship</sonar.projectKey>
         <sonar.moduleKey>${project.groupId}:${project.artifactId}</sonar.moduleKey>
+        <sonar.modules>application,domain,api-direct,api-service,infrastructure</sonar.modules>
         <sonar.organization>programmers-only-group</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
         <sonar.coverage.jacoco.xmlReportPaths>${project.build.directory}/site/jacoco/jacoco.xml

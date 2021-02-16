@@ -5,10 +5,10 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public abstract class BusinessException extends RuntimeException implements ErrorResponse {
 
-    private ErrorCode errorCode;
-    private String message;
+    private final ErrorCode errorCode;
+    private final String message;
 
-    public BusinessException(ErrorCode errorCode) {
+    protected BusinessException(ErrorCode errorCode) {
         this.errorCode = errorCode;
         this.message = errorCode.getValue();
     }
