@@ -22,11 +22,11 @@
         <sonar.organization>programmers-only-group</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
         <sonar.coverage.jacoco.xmlReportPaths>${project.build.directory}/site/jacoco/jacoco.xml,
-            ${project.basedir}/../infrastructure/target/site/jacoco/jacoco.xml,
-            ${project.basedir}/../domain/target/site/jacoco/jacoco.xml,
-            ${project.basedir}/../application/target/site/jacoco/jacoco.xml,
-            ${project.basedir}/../api-service/target/site/jacoco/jacoco.xml,
-            ${project.basedir}/../api-direct/target/site/jacoco/jacoco.xml
+            ${project.basedir}/app/infrastructure/target/site/jacoco/jacoco.xml,
+            ${project.basedir}/app/domain/target/site/jacoco/jacoco.xml,
+            ${project.basedir}/app/application/target/site/jacoco/jacoco.xml,
+            ${project.basedir}/app/api-service/target/site/jacoco/jacoco.xml,
+            ${project.basedir}/app/api-direct/target/site/jacoco/jacoco.xml
         </sonar.coverage.jacoco.xmlReportPaths>
         <java.version>11</java.version>
     </properties>
