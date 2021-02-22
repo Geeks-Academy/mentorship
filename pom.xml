@@ -21,48 +21,8 @@
         <sonar.moduleKey>${project.groupId}:${project.artifactId}</sonar.moduleKey>
         <sonar.organization>programmers-only-group</sonar.organization>
         <sonar.host.url>https://sonarcloud.io</sonar.host.url>
-        <sonar.coverage.jacoco.xmlReportPaths>${project.build.directory}/site/jacoco/jacoco.xml,
-            ${project.basedir}/../infrastructure/site/jacoco/jacoco.xml,
-            ${project.basedir}/../domain/site/jacoco/jacoco.xml,
-            ${project.basedir}/../application/site/jacoco/jacoco.xml,
-            ${project.basedir}/../api-service/site/jacoco/jacoco.xml,
-            ${project.basedir}/../api-direct/site/jacoco/jacoco.xml
-        </sonar.coverage.jacoco.xmlReportPaths>
         <java.version>11</java.version>
     </properties>
-
-    <build>
-        <plugins>
-            <plugin>
-                <groupId>org.jacoco</groupId>
-                <artifactId>jacoco-maven-plugin</artifactId>
-                <version>0.8.5</version>
-                <configuration>
-                    <excludes>
-                        <exclude>src/main/java/com/programmersonly/mentorship/web/GlobalExceptionHandler.ja`va</exclude>
-                        <exclude>src/main/java/com/programmersonly/mentorship/commons/exception/**/*</exclude>
-                        <exclude>**/*Request.*</exclude>
-                        <exclude>**/*Configuration.*</exclude>
-                    </excludes>
-                </configuration>
-                <executions>
-                    <execution>
-                        <id>prepare-agent</id>
-                        <goals>
-                            <goal>prepare-agent</goal>
-                        </goals>
-                    </execution>
-                    <execution>
-                        <id>report</id>
-                        <phase>prepare-package</phase>
-                        <goals>
-                            <goal>report</goal>
-                        </goals>
-                    </execution>
-                </executions>
-            </plugin>
-        </plugins>
-    </build>
 
     <dependencyManagement>
         <dependencies>
