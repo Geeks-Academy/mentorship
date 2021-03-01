@@ -37,7 +37,7 @@ class TemplateServiceImpl implements TemplateService {
 
   @Override
   public void remove(UUID templateId) {
-    // TODO Czy można usuwać wyłącznie zgody o statusie CREATED?????
+    // TODO Czy można usuwać wyłącznie template o statusie CREATED?????
     Template template = templateRepository.findById(templateId)
             .filter(tmp -> tmp.getStatus().equals(TemplateStatus.CREATED))
             .orElseThrow(TemplateNotFoundException::new);

@@ -11,6 +11,7 @@ import org.springframework.boot.test.web.client.TestRestTemplate
 import org.springframework.boot.web.server.LocalServerPort
 import org.springframework.http.HttpEntity
 import org.springframework.http.HttpHeaders
+import org.springframework.http.HttpMethod
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.test.context.TestExecutionListeners
@@ -33,12 +34,24 @@ class TemplateControllerTest extends Specification {
         when:
         ConfirmTemplateRequest confirmTemplateRequest = new ConfirmTemplateRequest()
         confirmTemplateRequest.templateId = UUID.fromString("893a767b-3d02-4a10-b8d5-e3628745eafa");
-        HttpHeaders headers = new HttpHeaders();
-        HttpEntity<ConfirmTemplateRequest> request = new HttpEntity<>(confirmTemplateRequest, headers);
-        restTemplate.put(new URI("http://localhost:" + port + "/template/confirm"), request)
+        ResponseEntity<String> response = restTemplate.exchange(String.format("http://localhost:%d/template/confirm", port), HttpMethod.PUT, new HttpEntity<ConfirmTemplateRequest>(confirmTemplateRequest), String.class);
 
         then:
         noExceptionThrown()
+        response.getStatusCode() == HttpStatus.OK
+    }
+
+    @DatabaseSetup("classpath:template/confirm/confirmed-template.xml")
+    @DatabaseTearDown("classpath:clear-all.xml")
+    def "Should return CONFLICT while template confirmation"() {
+        when:
+        ConfirmTemplateRequest confirmTemplateRequest = new ConfirmTemplateRequest()
+        confirmTemplateRequest.templateId = UUID.fromString("893a767b-3d02-4a10-b8d5-e3628745eafa");
+        ResponseEntity<String> response = restTemplate.exchange(String.format("http://localhost:%d/template/confirm", port), HttpMethod.PUT, new HttpEntity<ConfirmTemplateRequest>(confirmTemplateRequest), String.class);
+
+        then:
+        noExceptionThrown()
+        response.getStatusCode() == HttpStatus.CONFLICT;
     }
 
     @ExpectedDatabase(value = "classpath:template/create/expected-created-template.xml", assertionMode = DatabaseAssertionMode.NON_STRICT)
@@ -57,22 +70,30 @@ class TemplateControllerTest extends Specification {
         response.getStatusCode() == HttpStatus.CREATED
     }
 
-    //ToDo Dodaj testy dla usunięcia zgody po przepisaniu usługi delete
-    //1. Jeżeli usługa typu DELETE to templateId powinna mieć w path
-    //2. Jeżeli zostajemy przy templateId w body to w sumie można wszystki usługi przepisać na POST
-
-    /*
+    @DatabaseSetup("classpath:template/delete/unconfirmed-template.xml")
     @DatabaseTearDown("classpath:clear-all.xml")
     def "Should delete template"() {
         when:
         RemoveTemplateRequest removeTemplateRequest = new RemoveTemplateRequest()
         removeTemplateRequest.templateId = UUID.fromString("893a767b-3d02-4a10-b8d5-e3628745eafa");
-        HttpHeaders headers = new HttpHeaders();
-        HttpEntity<RemoveTemplateRequest> request = new HttpEntity<>(removeTemplateRequest, headers);
-        restTemplate.delete(String.format("http://localhost:%d/template/delete", port), request)
+        ResponseEntity<String> response = restTemplate.exchange(String.format("http://localhost:%d/template/delete", port), HttpMethod.DELETE, new HttpEntity<RemoveTemplateRequest>(removeTemplateRequest), String.class);
 
         then:
         noExceptionThrown()
+        response.getStatusCode() == HttpStatus.OK;
     }
-    */
+
+    @DatabaseSetup("classpath:template/delete/confirmed-template.xml")
+    @DatabaseTearDown("classpath:clear-all.xml")
+    def "Should return NOT_FOUND while deleting template"() {
+        when:
+        RemoveTemplateRequest removeTemplateRequest = new RemoveTemplateRequest()
+        removeTemplateRequest.templateId = UUID.fromString("893a767b-3d02-4a10-b8d5-e3628745eafa");
+        ResponseEntity<String> response = restTemplate.exchange(String.format("http://localhost:%d/template/delete", port), HttpMethod.DELETE, new HttpEntity<RemoveTemplateRequest>(removeTemplateRequest), String.class);
+
+        then:
+        noExceptionThrown()
+        response.getStatusCode() == HttpStatus.NOT_FOUND;
+    }
+
 }
