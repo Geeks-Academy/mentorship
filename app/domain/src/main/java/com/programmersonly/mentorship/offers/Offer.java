@@ -1,4 +1,4 @@
-package com.programmersonly.mentorship.offers.dto;
+package com.programmersonly.mentorship.offers;
 
 import com.programmersonly.mentorship.offers.OfferState;
 import lombok.AllArgsConstructor;
@@ -24,7 +24,7 @@ public class Offer {
     private LocalDateTime endDate;
     private Set<UUID> requestSet;
     private UUID attenderId;
-    private UUID canceledById;
+    private CanceledBy canceledBy;
     private LocalDateTime gradeDate;
     private OfferState state;
     private int gradeValue;
