@@ -12,7 +12,8 @@ import java.util.UUID;
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 class CreateOfferRequest {
     //  private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
-
+    //  @jsondeserializer (converter local date time)
+//    local date time converter
     private UUID ownerId;
     private LocalDateTime startDate;
     private LocalDateTime endDate;

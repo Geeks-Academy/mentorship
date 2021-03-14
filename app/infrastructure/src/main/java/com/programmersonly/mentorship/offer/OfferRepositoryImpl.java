@@ -37,6 +37,12 @@ public class OfferRepositoryImpl implements OfferRepository {
         System.out.println(entity);
     }
 
+    @Override
+    public void save(Offer offer) {
+         OfferEntity entity = map(offer);
+         offerDao.save(entity);
+    }
+
 
     @Override
     public Collection<Offer> getOffers() {
@@ -49,17 +55,11 @@ public class OfferRepositoryImpl implements OfferRepository {
 
     @Override
     public Offer getOffer(UUID offerId) {
-        OfferEntity entity = offerDao.findById(offerId)
-                    .orElseThrow(CannotFindOfferException::new);
+        OfferEntity entity = offerDao.findById(offerId).orElseThrow();
+//                .orElseThrow(CannotFindOfferException::new);
+        System.out.println(entity);
 
         return map(entity);
-    }
-
-    @Override
-    public void updateRequestSet(Offer offer) {
-
-       offerDao.save(map(offer));
-
     }
 
 

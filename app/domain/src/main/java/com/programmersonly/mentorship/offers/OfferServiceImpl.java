@@ -1,11 +1,8 @@
 package com.programmersonly.mentorship.offers;
 
-import com.programmersonly.mentorship.exception.AddAttenderException;
-import com.programmersonly.mentorship.offers.dto.AddAttenderDto;
-import com.programmersonly.mentorship.offers.dto.CreateOfferDto;
+import com.programmersonly.mentorship.offers.dto.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
 import javax.transaction.Transactional;
 import java.util.Collection;
 import java.util.UUID;
@@ -34,13 +31,11 @@ public class OfferServiceImpl implements OfferService {
     }
 
     @Override
-    public void addAttender(UUID offerId, AddAttenderDto dto) {
+    public void addAttender(UUID offerId, AddAttenderDto addAttenderDto) {
         Offer offer = offerRepository.getOffer(offerId);
-        if (!offer.getRequestSet().add(dto.getAttenderId())){
-            throw new AddAttenderException();
-        }
+        offer.addUserToRequestSet(addAttenderDto.getAttenderId());
 
-        offerRepository.updateRequestSet(offer);
+        offerRepository.save(offer);
     }
 
     @Override
@@ -48,5 +43,24 @@ public class OfferServiceImpl implements OfferService {
         return  offerRepository.getOffer(offerId);
     }
 
+    @Override
+    public void cancel(UUID offerId, CancelOfferDto cancelOfferDto) {
+        Offer offer = getOffer(offerId);
+        offer.cancel(cancelOfferDto.getCancelBy());
+        offerRepository.save(offer);
+    }
 
+    @Override
+    public void confirmAttender(UUID offerId, ConfirmAttenderDto confirmAttenderDto) {
+        Offer offer =offerRepository.getOffer(offerId);
+        offer.confirmAttender(confirmAttenderDto.getAttenderId());
+        offerRepository.save(offer);
+    }
+
+    @Override
+    public void gradeOffer(UUID offerId, GradeOfferDto gradeOfferDto) {
+        Offer offer = offerRepository.getOffer(offerId);
+        offer.grade(gradeOfferDto.getGradeValue(), gradeOfferDto.getAttenderID());
+
+    }
 }

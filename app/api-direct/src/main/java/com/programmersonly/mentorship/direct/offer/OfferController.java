@@ -3,8 +3,7 @@ package com.programmersonly.mentorship.direct.offer;
 
 import com.programmersonly.mentorship.offers.Offer;
 import com.programmersonly.mentorship.offers.OfferService;
-import com.programmersonly.mentorship.offers.dto.AddAttenderDto;
-import com.programmersonly.mentorship.offers.dto.CreateOfferDto;
+import com.programmersonly.mentorship.offers.dto.*;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +20,7 @@ public class OfferController {
     private OfferService offerService;
 
     @PostMapping("/create")
-    public ResponseEntity<Void> createMentorTemplate(@RequestBody CreateOfferRequest request) {
+    public ResponseEntity<Void> createOffer(@RequestBody CreateOfferRequest request) {
         CreateOfferDto offerDto = CreateOfferDto.builder()
                 .ownerId(request.getOwnerId())
                 .startDate(request.getStartDate())
@@ -54,8 +53,39 @@ public class OfferController {
     }
 
     @GetMapping("/{offerId}")
-    public ResponseEntity<Offer> getOffer(@PathVariable UUID offerId){
+    public ResponseEntity<Offer> getOffer(@PathVariable UUID offerId) {
         Offer offer = offerService.getOffer(offerId);
-        return new ResponseEntity(offer, HttpStatus.OK);
+        return new ResponseEntity<>(offer, HttpStatus.OK);
     }
+
+
+    @PostMapping("/{offerId}/cancel")
+    public ResponseEntity<Void> cancelOffer(@PathVariable UUID offerId, CancelOfferRequest request) {
+        CancelOfferDto dto = CancelOfferDto.builder()
+                .cancelBy(request.getCanceledById())
+                .build();
+        offerService.cancel(offerId, dto);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PostMapping("/{offerId}/attenderConfirmation")
+    public ResponseEntity<Void> cancel(@PathVariable UUID offerId, ConfirmAttenderRequest request ){
+        ConfirmAttenderDto dto = ConfirmAttenderDto.builder().attenderId(request.getAttenderId()).build();
+        offerService.confirmAttender(offerId, dto);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PostMapping("/{offerId}/gradeOffer")
+    public ResponseEntity<Void> grade(@PathVariable UUID offerId, GradeOfferRequest request){
+        GradeOfferDto dto = GradeOfferDto.builder()
+                .gradeValue(request.getGradeValue())
+                .attenderID(request.getAttenderId())
+                .build();
+        offerService.gradeOffer(offerId,dto);
+        return new ResponseEntity<>(HttpStatus.OK);
+
+    }
+
+
+
 }
