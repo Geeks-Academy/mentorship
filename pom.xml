@@ -9,7 +9,7 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
-    <groupId>com.programmersonly</groupId>
+    <groupId>com.geeksacagemy</groupId>
     <artifactId>mentorship</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
@@ -17,6 +17,7 @@
     <description>Mentorship application</description>
 
     <properties>
+<!--        Todo  change sonar group and organization from programmersonly to geeksacademy-->
         <sonar.projectKey>Programmers-Only-Group_mentorship</sonar.projectKey>
         <sonar.moduleKey>${project.artifactId}</sonar.moduleKey>
         <sonar.core.codeCoveragePlugin>jacoco</sonar.core.codeCoveragePlugin>
@@ -36,22 +37,22 @@
     <dependencyManagement>
         <dependencies>
             <dependency>
-                <groupId>com.programmersonly</groupId>
+                <groupId>com.geeksacagemy</groupId>
                 <artifactId>domain</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.programmersonly</groupId>
+                <groupId>com.geeksacagemy</groupId>
                 <artifactId>api-direct</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.programmersonly</groupId>
+                <groupId>com.geeksacagemy</groupId>
                 <artifactId>api-service</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>com.programmersonly</groupId>
+                <groupId>com.geeksacagemy</groupId>
                 <artifactId>infrastructure</artifactId>
                 <version>${project.version}</version>
             </dependency>
@@ -99,7 +100,7 @@
                     <configuration>
                         <skip>false</skip>
                         <excludes>
-                            <exclude>src/main/java/com/programmersonly/mentorship/exception/</exclude>
+                            <exclude>src/main/java/com/geeksacagemy/mentorship/exception/</exclude>
                         </excludes>
                     </configuration>
                     <executions>
