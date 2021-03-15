@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.programmersonly</groupId>
+        <groupId>com.geeksacagemy</groupId>
         <artifactId>app</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
@@ -15,19 +15,19 @@
 
     <dependencies>
         <dependency>
-            <groupId>com.programmersonly</groupId>
+            <groupId>com.geeksacagemy</groupId>
             <artifactId>domain</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.programmersonly</groupId>
+            <groupId>com.geeksacagemy</groupId>
             <artifactId>api-direct</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.programmersonly</groupId>
+            <groupId>com.geeksacagemy</groupId>
             <artifactId>api-service</artifactId>
         </dependency>
         <dependency>
-            <groupId>com.programmersonly</groupId>
+            <groupId>com.geeksacagemy</groupId>
             <artifactId>infrastructure</artifactId>
         </dependency>
 
@@ -70,6 +70,10 @@
             <artifactId>spring-boot-starter-test</artifactId>
         </dependency>
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
             <groupId>org.jacoco</groupId>
             <artifactId>org.jacoco.core</artifactId>
             <scope>test</scope>
@@ -82,11 +86,6 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <layers>
-                        <enabled>true</enabled>
-                    </layers>
-                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.codehaus.gmavenplus</groupId>

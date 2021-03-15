@@ -9,7 +9,7 @@
 
 ## :hammer: Installation
 ```bash
-git clone https://github.com/Programmers-Only-Group/mentorship
+git clone https://github.com/Geeks-Academy/mentorship
 cd mentorship
 ```
 
@@ -36,20 +36,56 @@ You can then access application here: http://localhost:8080/
 ## :memo: Project structure
 
 ```bash
-├── pom.xml
-├── src
-│   ├── main.java
-│   │   ├── package (com...)
-│   │   │    ├── MentorshipApplication.java
-│   │   │    ├── commons
-│   │   │    ├── mentors
-│   │   │    ├── notification
-│   │   │    ├── offers
-│   ├── main.resources
-│   │   ├── application.yml
-│   │   ├── application-prod.yml
-├── mvnw
-└── mvnw.cmd
+
+│   lombok.config
+│   mvnw
+│   mvnw.cmd
+│   pom.xml
+│   README.md
+└───app
+    │   pom.xml
+    ├───api-direct
+    │   │   pom.xml
+    │   ├───src
+    │       └───main.java.com.geeksacagemy
+    │                              └───mentorship
+    │                                  └───direct
+    │                                      ├───mentors
+    │                                      └───web
+    ├───api-service
+    │   │   pom.xml
+    │   ├───src
+    │       └───main.java.com.geeksacagemy
+    │                              └───mentorship
+    │                                  └───service
+    │                                      ├───mentors
+    │                                      └───web
+    ├───application
+    │   │   pom.xml
+    │   ├───src
+    │       ├───main.java.com.geeksacagemy
+    │           │                  └───mentorship
+    │           │                          MentorshipApplication.java
+    │           └───resources
+    │                   application-prod.yml
+    │                   application.yml
+    ├───domain
+    │   │   pom.xml
+    │   ├───src
+    │       └───main.java.com.geeksacagemy
+    │                              └───mentorship
+    │                                  ├───exception
+    │                                  ├───notifications
+    │                                  ├───offers
+    │                                  └───mentors
+    └───infrastructure
+        │   pom.xml
+        ├───src
+            └───main.java.com.geeksacagemy
+                                   └───mentorship
+                                       └───template
+ 
+
 ```
 
 The project was splitted into three seperated bounded contexts `mentors` , `offers` , `notification` and shared `commons` package.
