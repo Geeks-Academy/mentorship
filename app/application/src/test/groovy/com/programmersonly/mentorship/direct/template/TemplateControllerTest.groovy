@@ -71,8 +71,8 @@ class TemplateControllerTest extends Specification {
         CreateTemplateRequest createTemplateRequest = getCreateTemplateRequest()
 
         when:
-        HttpHeaders headers = new HttpHeaders();
-        HttpEntity<CreateTemplateRequest> request = new HttpEntity<>(createTemplateRequest, headers);
+        HttpHeaders headers = new HttpHeaders()
+        HttpEntity<CreateTemplateRequest> request = new HttpEntity<>(createTemplateRequest, headers)
         URI uri = new URI(String.format(CREATE_PATH, port))
         ResponseEntity response = restTemplate.postForEntity(uri, request, String.class)
 

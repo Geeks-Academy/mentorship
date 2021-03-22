@@ -17,4 +17,6 @@ public class Template {
     private String email;
     private String fullName;
     private TemplateStatus status;
+
+
 }

@@ -10,6 +10,8 @@ import com.programmersonly.mentorship.exception.CannotFindOfferException
 import com.programmersonly.mentorship.offers.Offer
 import com.programmersonly.mentorship.offers.OfferState
 import org.codehaus.groovy.runtime.metaclass.MetaMethodIndex
+import org.dbunit.dataset.IDataSet
+import org.dbunit.dataset.xml.FlatXmlDataSet
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.web.client.TestRestTemplate
 import org.springframework.boot.web.server.LocalServerPort
@@ -122,7 +124,7 @@ class OfferControllerTest extends Specification {
     def "should query offer by id"() {
         UUID offerId = UUID.fromString("893a767b-3d02-4a10-b8d5-e36287451111")
         when:
-        URI uriFindOfferById = new URI(String.format(FIND_OFFER_BY_ID_PATCH, port,offerId))
+        URI uriFindOfferById = new URI(String.format(FIND_OFFER_BY_ID_PATCH, port, offerId))
         ResponseEntity findOfferById = restTemplate.getForEntity(uriFindOfferById, Offer.class)
         Offer offer = findOfferById.getBody()
 

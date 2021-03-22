@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
 import java.time.Duration;
 import java.time.LocalDateTime;
 import java.util.Set;
@@ -49,9 +50,9 @@ public class Offer {
         this.state = state;
     }
 
-    void addUserToRequestSet(UUID userID) {
+    void addUserToRequestSet(UUID attenderId) {
         if (state == OfferState.NEW_OFFER) {
-            requestSet.add(userID);
+            requestSet.add(attenderId);
         } else {
             throw new AddAttenderException();
         }
@@ -102,7 +103,7 @@ public class Offer {
 
     private void checkIfSuitableForGrading(UUID attenderId) {
         if (state != OfferState.FINISHED_UNGRADED)
-           throw new GradeOfferException(ErrorCode.MS17);
+            throw new GradeOfferException(ErrorCode.MS17);
 
         if (!this.attenderId.equals(attenderId))
             throw new GradeOfferException(ErrorCode.MS18);
@@ -130,13 +131,13 @@ public class Offer {
         return duration.toMinutes();
     }
 
-    private void determineByWhomWasCanceled(UUID canceledbyid){
+    private void determineByWhomWasCanceled(UUID canceledbyid) {
 
-        if ( canceledbyid.equals(ownerId)){
-                canceledBy = CanceledBy.Mentor;
-        } else if (canceledbyid.equals(attenderId)){
+        if (canceledbyid.equals(ownerId)) {
+            canceledBy = CanceledBy.Mentor;
+        } else if (canceledbyid.equals(attenderId)) {
             canceledBy = CanceledBy.Stunent;
-        } else{
+        } else {
             throw new OfferCancellationException(ErrorCode.MS16);
         }
 

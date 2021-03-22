@@ -1,12 +1,10 @@
 package com.programmersonly.mentorship.offer;
 
-import com.programmersonly.mentorship.exception.CannotFindOfferException;
 import com.programmersonly.mentorship.offers.OfferRepository;
 import com.programmersonly.mentorship.offers.OfferState;
 import com.programmersonly.mentorship.offers.Offer;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
-
 import javax.transaction.Transactional;
 import java.util.Collection;
 import java.util.LinkedList;

@@ -33,7 +33,7 @@ public class OfferServiceImpl implements OfferService {
     @Override
     public void addAttender(UUID offerId, AddAttenderDto addAttenderDto) {
         Offer offer = offerRepository.getOffer(offerId);
-        offer.addUserToRequestSet(addAttenderDto.getAttenderId());
+//        offer.addUserToRequestSet(addAttenderDto.getAttenderId());
 
         offerRepository.save(offer);
     }
@@ -53,14 +53,14 @@ public class OfferServiceImpl implements OfferService {
     @Override
     public void confirmAttender(UUID offerId, ConfirmAttenderDto confirmAttenderDto) {
         Offer offer =offerRepository.getOffer(offerId);
-        offer.confirmAttender(confirmAttenderDto.getAttenderId());
+//        offer.confirmAttender(confirmAttenderDto.getAttenderId());
         offerRepository.save(offer);
     }
 
     @Override
     public void gradeOffer(UUID offerId, GradeOfferDto gradeOfferDto) {
         Offer offer = offerRepository.getOffer(offerId);
-        offer.grade(gradeOfferDto.getGradeValue(), gradeOfferDto.getAttenderID());
+//        offer.grade(gradeOfferDto.getGradeValue(), gradeOfferDto.getAttenderID());
 
     }
 }
