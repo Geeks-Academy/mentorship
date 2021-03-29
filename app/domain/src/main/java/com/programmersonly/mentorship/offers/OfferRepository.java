@@ -11,6 +11,8 @@ public interface OfferRepository {
 
     Collection<Offer> getOffers();
 
+    void addAttender(UUID offerId, Attender attender);
+
     Offer getOffer(UUID offerId);
 
 }

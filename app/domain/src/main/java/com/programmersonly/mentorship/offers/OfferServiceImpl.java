@@ -32,10 +32,11 @@ public class OfferServiceImpl implements OfferService {
 
     @Override
     public void addAttender(UUID offerId, AddAttenderDto addAttenderDto) {
-        Offer offer = offerRepository.getOffer(offerId);
-//        offer.addUserToRequestSet(addAttenderDto.getAttenderId());
-
-        offerRepository.save(offer);
+        Attender attender = Attender.builder()
+                .attenderId(addAttenderDto.getAttenderId())
+                .status(Attender.Status.REQUESTED)
+                .build();
+       offerRepository.addAttender(offerId, attender);
     }
 
     @Override

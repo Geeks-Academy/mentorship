@@ -1,14 +1,15 @@
 package com.programmersonly.mentorship.offer;
 
+import com.programmersonly.mentorship.exception.CannotFindOfferException;
+import com.programmersonly.mentorship.offers.Attender;
 import com.programmersonly.mentorship.offers.OfferRepository;
 import com.programmersonly.mentorship.offers.OfferState;
 import com.programmersonly.mentorship.offers.Offer;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import javax.transaction.Transactional;
-import java.util.Collection;
-import java.util.LinkedList;
-import java.util.UUID;
+import java.util.*;
+import java.util.stream.Collectors;
 
 @Repository
 @RequiredArgsConstructor
@@ -16,7 +17,7 @@ import java.util.UUID;
 public class OfferRepositoryImpl implements OfferRepository {
 
     private final OfferDao offerDao;
-
+    private final AttenderDao attenderDao;
 
 
     @Override
@@ -43,6 +44,18 @@ public class OfferRepositoryImpl implements OfferRepository {
 
 
     @Override
+    public void addAttender(UUID offerId, Attender attender) {
+        Optional<OfferEntity> offerEntity = offerDao.findById(offerId);
+
+        AttenderEntity attenderEntity = AttenderEntity.builder()
+                .offer(offerEntity.get())
+                .status(attender.getStatus())
+                .attenderId(attender.getAttenderId())
+                .build();
+        attenderDao.save(attenderEntity);
+    }
+
+    @Override
     public Collection<Offer> getOffers() {
         Collection<Offer> list = new LinkedList<>();
 
@@ -53,10 +66,8 @@ public class OfferRepositoryImpl implements OfferRepository {
 
     @Override
     public Offer getOffer(UUID offerId) {
-        OfferEntity entity = offerDao.findById(offerId).orElseThrow();
-//                .orElseThrow(CannotFindOfferException::new);
-        System.out.println(entity);
-
+        OfferEntity entity = offerDao.findById(offerId)
+                .orElseThrow(CannotFindOfferException::new);
         return map(entity);
     }
 
@@ -67,13 +78,41 @@ public class OfferRepositoryImpl implements OfferRepository {
                 .ownerId(entity.getOwnerId())
                 .startDate(entity.getStartDate())
                 .endDate(entity.getEndDate())
-                .requestSet(entity.getRequestSet())
+                .requestSet(mapToModel(entity.getRequestSet()))
                 .attenderId(entity.getAttenderId())
                 .canceledBy(entity.getCanceledBy())
                 .gradeDate(entity.getGradeDate())
                 .gradeValue(entity.getGradeValue())
                 .state(entity.getState())
                 .build();
+    }
+
+    private Set<Attender> mapToModel(Set<AttenderEntity> attenderEntity) {
+        return attenderEntity.stream()
+                .map(this::map)
+                .collect(Collectors.toSet());
+    }
+
+    private Attender map(AttenderEntity entity) {
+        return Attender.builder()
+                .status(entity.getStatus())
+                .attenderId(entity.getAttenderId())
+                .id(entity.getId())
+                .build();
+    }
+
+    private AttenderEntity map(Attender attender) {
+        return AttenderEntity.builder()
+                .status(attender.getStatus())
+                .id(attender.getId())
+                .attenderId(attender.getAttenderId())
+                .build();
+    }
+
+    private Set<AttenderEntity> mapToEntity(Set<Attender> attenders) {
+        return attenders.stream()
+                .map(this::map)
+                .collect(Collectors.toSet());
     }
 
     private OfferEntity map (Offer offer){
@@ -84,7 +123,7 @@ public class OfferRepositoryImpl implements OfferRepository {
                 .attenderId(offer.getAttenderId())
                 .canceledBy(offer.getCanceledBy())
                 .gradeDate(offer.getGradeDate())
-                .requestSet(offer.getRequestSet())
+                .requestSet(mapToEntity(offer.getRequestSet()))
                 .offerId(offer.getOfferId())
                 .gradeValue(offer.getGradeValue())
                 .state(offer.getState())

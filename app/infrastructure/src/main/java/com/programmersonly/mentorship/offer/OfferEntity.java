@@ -35,8 +35,8 @@ class OfferEntity {
 
     private LocalDateTime endDate;
 
-    @ElementCollection
-    private Set<UUID> requestSet;
+    @OneToMany(mappedBy = "offer", cascade = CascadeType.ALL)
+    private Set<AttenderEntity> requestSet;
 
     @Type(type = "uuid-char")
     private UUID attenderId;

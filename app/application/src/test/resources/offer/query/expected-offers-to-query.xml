@@ -14,6 +14,31 @@
            end_date="2021-03-08 13:45:00"
            state="NEW_OFFER"
            grade_value="0"/>
+
+    <attender id="893a767b-3d02-4a10-b8d5-e36287450001"
+              attender_id="893a767b-3d02-4a10-b8d5-e36287450002"
+              status="REQUESTED"
+              offer_id="893a767b-3d02-4a10-b8d5-e36287451111"
+    />
+
+    <attender id="893a767b-3d02-4a10-b8d5-e36287450002"
+              attender_id="893a767b-3d02-4a10-b8d5-e36287450003"
+              status="REQUESTED"
+              offer_id="893a767b-3d02-4a10-b8d5-e36287451111"
+    />
+
+    <attender id="893a767b-3d02-4a10-b8d5-e36287450003"
+              attender_id="893a767b-3d02-4a10-b8d5-e36287450002"
+              status="REQUESTED"
+              offer_id="893a767b-3d02-4a10-b8d5-e36287451112"
+    />
+
+    <attender id="893a767b-3d02-4a10-b8d5-e36287450004"
+              attender_id="893a767b-3d02-4a10-b8d5-e36287450003"
+              status="REQUESTED"
+              offer_id="893a767b-3d02-4a10-b8d5-e36287451112"
+    />
+
 </dataset>
 
 <!--<Offer offer_id="893a767b-3d02-4a10-b8d5-e36287451111"

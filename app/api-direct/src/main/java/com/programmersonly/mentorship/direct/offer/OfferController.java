@@ -49,7 +49,7 @@ public class OfferController {
                         .build();
         offerService.addAttender(offerId, addAttenderDto);
 
-        return new ResponseEntity<>(HttpStatus.ACCEPTED);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @GetMapping("/{offerId}")

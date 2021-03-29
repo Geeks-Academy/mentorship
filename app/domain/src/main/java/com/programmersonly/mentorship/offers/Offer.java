@@ -23,7 +23,7 @@ public class Offer {
     private UUID ownerId;
     private LocalDateTime startDate;
     private LocalDateTime endDate;
-    private Set<UUID> requestSet;
+    private Set<Attender> requestSet;
     private UUID attenderId;
     private CanceledBy canceledBy;
     private LocalDateTime gradeDate;
@@ -50,15 +50,15 @@ public class Offer {
         this.state = state;
     }
 
-    void addUserToRequestSet(UUID attenderId) {
-        if (state == OfferState.NEW_OFFER) {
-            requestSet.add(attenderId);
-        } else {
-            throw new AddAttenderException();
-        }
-
-
-    }
+//    void addUserToRequestSet(UUID attenderId) {
+//        if (state == OfferState.NEW_OFFER) {
+//            requestSet.add(attenderId);
+//        } else {
+//            throw new AddAttenderException();
+//        }
+//
+//
+//    }
 
 
     void confirmAttender(UUID attenderId) {

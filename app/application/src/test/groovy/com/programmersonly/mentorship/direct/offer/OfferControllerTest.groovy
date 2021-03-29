@@ -7,6 +7,7 @@ import com.github.springtestdbunit.annotation.ExpectedDatabase
 import com.github.springtestdbunit.assertion.DatabaseAssertionMode
 import com.programmersonly.mentorship.MentorshipApplication
 import com.programmersonly.mentorship.exception.CannotFindOfferException
+import com.programmersonly.mentorship.offers.Attender
 import com.programmersonly.mentorship.offers.Offer
 import com.programmersonly.mentorship.offers.OfferState
 import org.codehaus.groovy.runtime.metaclass.MetaMethodIndex
@@ -108,12 +109,12 @@ class OfferControllerTest extends Specification {
 //      Retrieve offer once again and check if attender is added
         ResponseEntity<Offer[]> getOffers = restTemplate.getForEntity(uriGetOffers, Offer[].class)
         Offer offer = getOffers.getBody()[0]
-        Set<UUID> requestSet = offer.getRequestSet();
+        Set<Attender> requestSet = offer.getRequestSet();
 
 
         then:
         noExceptionThrown()
-        requestSet.contains(addAttenderRequest.getAttenderId())
+        requestSet.getAt(0).getAttenderId().equals(addAttenderRequest.getAttenderId())
         addAttenderResponse.getStatusCode() == HttpStatus.CREATED
 
 
@@ -142,10 +143,10 @@ class OfferControllerTest extends Specification {
     def "should throw exception when cannot find offer"() {
         when: " Try to access not exiting offer"
         URI uriFindOfferById = new URI(String.format(FIND_OFFER_BY_ID_PATCH, port, UUID.randomUUID()))
-        restTemplate.getForEntity(uriFindOfferById, Offer.class)
+        ResponseEntity<Offer> response =restTemplate.getForEntity(uriFindOfferById, Offer.class)
 
         then: "Should throw exception"
-        thrown NoSuchElementException
+        response.getStatusCode() == HttpStatus.NOT_FOUND
 
     }
 
