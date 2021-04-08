@@ -13,7 +13,8 @@ public enum ErrorCode {
     MS15("Offer in current state can not be canceled"),
     MS16("Offer can be canceled only by mentor or attender"),
     MS17("Only offers finished and ungraded offers can be graded."),
-    MS18("Only the one that attended the consultation can grade it");
+    MS18("Only the one that attended the consultation can grade it"),
+    MS19("Attender not found");
     private String value;
 
     ErrorCode(String message) {

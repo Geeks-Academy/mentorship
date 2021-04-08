@@ -1,14 +1,23 @@
 package com.programmersonly.mentorship.offer;
 
+import com.programmersonly.mentorship.exception.AttenderNotFound;
 import com.programmersonly.mentorship.exception.CannotFindOfferException;
 import com.programmersonly.mentorship.offers.Attender;
+import com.programmersonly.mentorship.offers.Attender.Status;
+import com.programmersonly.mentorship.offers.Offer;
 import com.programmersonly.mentorship.offers.OfferRepository;
 import com.programmersonly.mentorship.offers.OfferState;
-import com.programmersonly.mentorship.offers.Offer;
+import com.programmersonly.mentorship.offers.dto.AddAttenderDto;
+import com.programmersonly.mentorship.offers.dto.ConfirmAttenderDto;
+import com.programmersonly.mentorship.offers.dto.CreateOfferDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
+
 import javax.transaction.Transactional;
-import java.util.*;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 @Repository
@@ -19,21 +28,15 @@ public class OfferRepositoryImpl implements OfferRepository {
     private final OfferDao offerDao;
     private final AttenderDao attenderDao;
 
-
     @Override
-    public void create(Offer offer) {
-
+    public void create(CreateOfferDto createOfferDto) {
         OfferEntity offerEntity = OfferEntity.builder()
-                .ownerId(offer.getOwnerId())
-                .startDate(offer.getStartDate())
-                .endDate(offer.getEndDate())
-                .state(OfferState.NEW_OFFER)
+                .ownerId(createOfferDto.getOwnerId())
+                .startDate(createOfferDto.getStartDate())
+                .endDate(createOfferDto.getEndDate())
+                .state(OfferState.NEW)
                 .build();
-
         offerDao.save(offerEntity);
-
-        OfferEntity entity = offerDao.findAll().iterator().next();
-        System.out.println(entity);
     }
 
     @Override
@@ -44,24 +47,42 @@ public class OfferRepositoryImpl implements OfferRepository {
 
 
     @Override
-    public void addAttender(UUID offerId, Attender attender) {
-        Optional<OfferEntity> offerEntity = offerDao.findById(offerId);
-
-        AttenderEntity attenderEntity = AttenderEntity.builder()
-                .offer(offerEntity.get())
-                .status(attender.getStatus())
-                .attenderId(attender.getAttenderId())
-                .build();
-        attenderDao.save(attenderEntity);
+    public void addAttender(AddAttenderDto addAttenderDto) {
+        Optional<OfferEntity> offerEntity = offerDao.findById(addAttenderDto.getOfferId());
+        if (offerEntity.isPresent()) {
+            AttenderEntity attenderEntity = AttenderEntity.builder()
+                    .offer(offerEntity.get())
+                    .status(Status.REQUESTED)
+                    .attenderId(addAttenderDto.getAttenderId())
+                    .build();
+            attenderDao.save(attenderEntity);
+        } else {
+            throw new CannotFindOfferException();
+        }
     }
 
     @Override
-    public Collection<Offer> getOffers() {
-        Collection<Offer> list = new LinkedList<>();
+    public List<Offer> getOffers() {
+        return offerDao.getAllOffers().stream()
+                .map(this::map)
+                .collect(Collectors.toList());
+    }
 
+    @Override
+    public void cancel(UUID offerId) {
+        offerDao.updateStatus(offerId, OfferState.CANCELLED);
+    }
 
-        offerDao.findAll().forEach(e ->list.add(map(e)));
-        return list;
+    @Override
+    public void confirmAttender(ConfirmAttenderDto confirmAttenderDto) {
+        Optional<AttenderEntity> optAttender = attenderDao.findAttender(confirmAttenderDto.getAttenderId(), confirmAttenderDto.getOfferId());
+        if (optAttender.isPresent()) {
+            AttenderEntity acceptedAttender = optAttender.get().toBuilder()
+                    .status(Status.ACCEPTED)
+                    .build();
+            attenderDao.save(acceptedAttender);
+        }
+        throw new AttenderNotFound();
     }
 
     @Override
@@ -78,11 +99,7 @@ public class OfferRepositoryImpl implements OfferRepository {
                 .ownerId(entity.getOwnerId())
                 .startDate(entity.getStartDate())
                 .endDate(entity.getEndDate())
-                .requestSet(mapToModel(entity.getRequestSet()))
-                .attenderId(entity.getAttenderId())
-                .canceledBy(entity.getCanceledBy())
-                .gradeDate(entity.getGradeDate())
-                .gradeValue(entity.getGradeValue())
+                .attenders(mapToModel(entity.getAttenders()))
                 .state(entity.getState())
                 .build();
     }
@@ -120,12 +137,8 @@ public class OfferRepositoryImpl implements OfferRepository {
                 .ownerId(offer.getOwnerId())
                 .startDate(offer.getStartDate())
                 .endDate(offer.getEndDate())
-                .attenderId(offer.getAttenderId())
-                .canceledBy(offer.getCanceledBy())
-                .gradeDate(offer.getGradeDate())
-                .requestSet(mapToEntity(offer.getRequestSet()))
+                .attenders(mapToEntity(offer.getAttenders()))
                 .offerId(offer.getOfferId())
-                .gradeValue(offer.getGradeValue())
                 .state(offer.getState())
                 .build();
     }

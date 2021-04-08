@@ -5,15 +5,13 @@
            owner_id="893a767b-3d02-4a10-b8d5-e36287451111"
            start_date="2021-03-08 13:00:00"
            end_date="2021-03-08 13:45:00"
-           state="NEW_OFFER"
-           grade_value="0"/>
+           state="NEW"/>
 
     <Offer offer_id="893a767b-3d02-4a10-b8d5-e36287451112"
            owner_id="893a767b-3d02-4a10-b8d5-e36287451111"
            start_date="2021-03-08 13:00:00"
            end_date="2021-03-08 13:45:00"
-           state="NEW_OFFER"
-           grade_value="0"/>
+           state="NEW"/>
 
     <attender id="893a767b-3d02-4a10-b8d5-e36287450001"
               attender_id="893a767b-3d02-4a10-b8d5-e36287450002"
@@ -40,12 +38,3 @@
     />
 
 </dataset>
-
-<!--<Offer offer_id="893a767b-3d02-4a10-b8d5-e36287451111"
-       owner_id="893a767b-3d02-4a10-b8d5-e36287451111"
-       start_date="2021-03-08 13:00:00"
-       end_date="2021-03-08 13:45:00"
-       canceled_by="null"
-       grade_date="2021-03-08 13:45:00"
-       state="NEW_OFFER"
-       grade_value="0"/>-->

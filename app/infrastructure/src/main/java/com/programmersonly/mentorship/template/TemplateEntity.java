@@ -1,9 +1,6 @@
 package com.programmersonly.mentorship.template;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
 
@@ -14,6 +11,7 @@ import java.util.UUID;
 @NoArgsConstructor
 @Builder
 @Getter
+@Setter
 @Table(name = "TEMPLATE")
 @AllArgsConstructor
 class TemplateEntity {

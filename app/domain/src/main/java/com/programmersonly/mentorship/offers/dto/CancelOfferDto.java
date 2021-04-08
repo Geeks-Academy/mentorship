@@ -9,4 +9,5 @@ import java.util.UUID;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class CancelOfferDto {
         private UUID cancelBy;
+        private UUID offerId;
 }

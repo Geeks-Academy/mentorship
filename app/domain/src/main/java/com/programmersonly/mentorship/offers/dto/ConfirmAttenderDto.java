@@ -10,4 +10,5 @@ import java.util.UUID;
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ConfirmAttenderDto {
         private UUID attenderId;
+        private UUID offerId;
 }

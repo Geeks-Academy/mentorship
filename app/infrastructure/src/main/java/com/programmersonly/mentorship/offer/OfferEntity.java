@@ -1,6 +1,5 @@
 package com.programmersonly.mentorship.offer;
 
-import com.programmersonly.mentorship.offers.CanceledBy;
 import com.programmersonly.mentorship.offers.OfferState;
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
@@ -12,9 +11,10 @@ import java.util.Set;
 import java.util.UUID;
 
 @Entity
-@Table(name = "Offer")
+@Table(name = "offer")
 @Getter
 @Builder
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 class OfferEntity {
@@ -35,23 +35,11 @@ class OfferEntity {
 
     private LocalDateTime endDate;
 
-    @OneToMany(mappedBy = "offer", cascade = CascadeType.ALL)
-    private Set<AttenderEntity> requestSet;
-
-    @Type(type = "uuid-char")
-    private UUID attenderId;
-
-
-    @Enumerated(EnumType.STRING)
-    private CanceledBy canceledBy;
-
-    private LocalDateTime gradeDate;
+    @OneToMany(mappedBy = "offer", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<AttenderEntity> attenders;
 
     @Enumerated(EnumType.STRING)
     private OfferState state;
-
-    private int gradeValue;
-
 
     @Override
     public String toString() {
@@ -60,12 +48,8 @@ class OfferEntity {
                 ", ownerId=" + ownerId +
                 ", startDate=" + startDate +
                 ", endDate=" + endDate +
-                ", requestSet=" + requestSet +
-                ", attenderId=" + attenderId +
-                ", canceledById=" + canceledBy +
-                ", gradeDate=" + gradeDate +
+                ", requestSet=" + attenders +
                 ", state=" + state +
-                ", gradeValue=" + gradeValue +
                 '}';
     }
 }

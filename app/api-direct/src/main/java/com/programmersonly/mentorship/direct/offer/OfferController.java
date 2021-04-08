@@ -14,7 +14,7 @@ import java.util.UUID;
 
 @RestController
 @AllArgsConstructor
-@RequestMapping(value = "/offer")
+@RequestMapping(value = "/offers")
 public class OfferController {
 
     private OfferService offerService;
@@ -26,29 +26,24 @@ public class OfferController {
                 .startDate(request.getStartDate())
                 .endDate(request.getEndDate())
                 .build();
-        System.out.println("controller");
         offerService.create(offerDto);
-
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
-
-    @GetMapping("/offers")
-    public ResponseEntity<Collection<Offer>> offers() {
-
-        Collection<Offer> list = offerService.offers();
+    @GetMapping("")
+    public ResponseEntity<Collection<Offer>> getOffers() {
+        Collection<Offer> list = offerService.getOffers();
         return new ResponseEntity<>(list, HttpStatus.OK);
     }
 
 
     @PostMapping("/{offerId}/attender")
-    public ResponseEntity<Void> addAttender(@PathVariable UUID offerId, @RequestBody AddAttenderRequest request) {
-        AddAttenderDto addAttenderDto =
-                AddAttenderDto.builder()
-                        .attenderId(request.getAttenderId())
+    public ResponseEntity<Void> addAttender(@PathVariable UUID offerId, @RequestBody String attenderId) {
+        AddAttenderDto addAttenderDto = AddAttenderDto.builder()
+                        .attenderId(UUID.fromString(attenderId))
+                        .offerId(offerId)
                         .build();
-        offerService.addAttender(offerId, addAttenderDto);
-
+        offerService.addAttender(addAttenderDto);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
@@ -58,20 +53,23 @@ public class OfferController {
         return new ResponseEntity<>(offer, HttpStatus.OK);
     }
 
-
     @PostMapping("/{offerId}/cancel")
-    public ResponseEntity<Void> cancelOffer(@PathVariable UUID offerId, CancelOfferRequest request) {
+    public ResponseEntity<Void> cancelOffer(@PathVariable UUID offerId, @RequestBody String attenderId) {
         CancelOfferDto dto = CancelOfferDto.builder()
-                .cancelBy(request.getCanceledById())
+                .cancelBy(UUID.fromString(attenderId))
+                .offerId(offerId)
                 .build();
-        offerService.cancel(offerId, dto);
+        offerService.cancel(dto);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
-    @PostMapping("/{offerId}/attenderConfirmation")
-    public ResponseEntity<Void> cancel(@PathVariable UUID offerId, ConfirmAttenderRequest request ){
-        ConfirmAttenderDto dto = ConfirmAttenderDto.builder().attenderId(request.getAttenderId()).build();
-        offerService.confirmAttender(offerId, dto);
+    @PostMapping("/{offerId}/attender/confirm")
+    public ResponseEntity<Void> cancel(@PathVariable UUID offerId, @RequestBody String attenderId){
+        ConfirmAttenderDto dto = ConfirmAttenderDto.builder()
+                .attenderId(UUID.fromString(attenderId))
+                .offerId(offerId)
+                .build();
+        offerService.confirmAttender(dto);
         return new ResponseEntity<>(HttpStatus.OK);
     }
 

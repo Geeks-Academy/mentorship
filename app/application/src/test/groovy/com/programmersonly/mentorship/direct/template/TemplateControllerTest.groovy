@@ -36,7 +36,7 @@ class TemplateControllerTest extends Specification {
     private TestRestTemplate restTemplate = new TestRestTemplate();
 
     @DatabaseSetup("classpath:template/confirm/unconfirmed-template.xml")
-    @ExpectedDatabase("classpath:template/confirm/expected-confirmed-template.xml")
+    @ExpectedDatabase(value = "classpath:template/confirm/expected-confirmed-template.xml", assertionMode = DatabaseAssertionMode.NON_STRICT)
     @DatabaseTearDown("classpath:clear-all.xml")
     def "Should confirm template"() {
         given:

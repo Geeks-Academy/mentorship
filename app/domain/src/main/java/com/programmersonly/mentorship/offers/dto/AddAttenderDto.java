@@ -11,4 +11,6 @@ import java.util.UUID;
 public class AddAttenderDto {
     private UUID attenderId;
 
+    private UUID offerId;
+
 }

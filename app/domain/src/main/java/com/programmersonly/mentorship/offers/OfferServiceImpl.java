@@ -4,7 +4,7 @@ import com.programmersonly.mentorship.offers.dto.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import javax.transaction.Transactional;
-import java.util.Collection;
+import java.util.List;
 import java.util.UUID;
 
 @Service
@@ -16,46 +16,32 @@ public class OfferServiceImpl implements OfferService {
 
     @Override
     public void create(CreateOfferDto createOfferDto) {
-        Offer offer = Offer.builder()
-                .ownerId(createOfferDto.getOwnerId())
-                .startDate(createOfferDto.getStartDate())
-                .endDate(createOfferDto.getEndDate())
-                .state(OfferState.NEW_OFFER)
-                .build();
-        offerRepository.create(offer);
+        offerRepository.create(createOfferDto);
     }
 
     @Override
-    public Collection<Offer> offers() {
+    public List<Offer> getOffers() {
         return offerRepository.getOffers();
     }
 
     @Override
-    public void addAttender(UUID offerId, AddAttenderDto addAttenderDto) {
-        Attender attender = Attender.builder()
-                .attenderId(addAttenderDto.getAttenderId())
-                .status(Attender.Status.REQUESTED)
-                .build();
-       offerRepository.addAttender(offerId, attender);
+    public void addAttender(AddAttenderDto addAttenderDto) {
+       offerRepository.addAttender(addAttenderDto);
     }
 
     @Override
     public Offer getOffer(UUID offerId) {
-        return  offerRepository.getOffer(offerId);
+        return offerRepository.getOffer(offerId);
     }
 
     @Override
-    public void cancel(UUID offerId, CancelOfferDto cancelOfferDto) {
-        Offer offer = getOffer(offerId);
-        offer.cancel(cancelOfferDto.getCancelBy());
-        offerRepository.save(offer);
+    public void cancel(CancelOfferDto cancelOfferDto) {
+        offerRepository.cancel(cancelOfferDto.getOfferId());
     }
 
     @Override
-    public void confirmAttender(UUID offerId, ConfirmAttenderDto confirmAttenderDto) {
-        Offer offer =offerRepository.getOffer(offerId);
-//        offer.confirmAttender(confirmAttenderDto.getAttenderId());
-        offerRepository.save(offer);
+    public void confirmAttender(ConfirmAttenderDto confirmAttenderDto) {
+        offerRepository.confirmAttender(confirmAttenderDto);
     }
 
     @Override

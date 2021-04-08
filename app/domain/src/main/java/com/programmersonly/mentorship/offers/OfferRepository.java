@@ -1,18 +1,24 @@
 package com.programmersonly.mentorship.offers;
 
-import java.util.Collection;
-import java.util.Set;
+import com.programmersonly.mentorship.offers.dto.AddAttenderDto;
+import com.programmersonly.mentorship.offers.dto.ConfirmAttenderDto;
+import com.programmersonly.mentorship.offers.dto.CreateOfferDto;
+
+import java.util.List;
 import java.util.UUID;
 
 public interface OfferRepository {
-    void create(Offer offer);
+    void create(CreateOfferDto createOfferDto);
 
     void save(Offer odder);
 
-    Collection<Offer> getOffers();
+    List<Offer> getOffers();
 
-    void addAttender(UUID offerId, Attender attender);
+    void addAttender(AddAttenderDto addAttenderDto);
 
     Offer getOffer(UUID offerId);
 
+    void cancel(UUID offerId);
+
+    void confirmAttender(ConfirmAttenderDto confirmAttenderDto);
 }

@@ -2,22 +2,22 @@ package com.programmersonly.mentorship.offers;
 
 import com.programmersonly.mentorship.offers.dto.*;
 
-import java.util.Collection;
+import java.util.List;
 import java.util.UUID;
 
 public interface OfferService {
 
     void create(CreateOfferDto createOfferDto);
 
-    Collection<Offer> offers();
+    List<Offer> getOffers();
 
-    void addAttender(UUID offerId, AddAttenderDto addAttenderDto);
+    void addAttender(AddAttenderDto addAttenderDto);
 
     Offer getOffer(UUID offerId);
 
-    void cancel(UUID offerId, CancelOfferDto cancelOfferDto);
+    void cancel(CancelOfferDto cancelOfferDto);
 
-    void confirmAttender(UUID offerId, ConfirmAttenderDto confirmAttenderDto);
+    void confirmAttender(ConfirmAttenderDto confirmAttenderDto);
 
     void gradeOffer(UUID offerId, GradeOfferDto gradeOfferDto);
 
